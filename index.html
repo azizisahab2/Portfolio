@@ -1,253 +1,809 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohd Faizan Azizi | Senior .NET Developer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#0f172a;color:#f1f5f9;scroll-behavior:smooth}
-a{text-decoration:none;color:inherit}
-
-/* NAVBAR */
-nav{
-position:fixed;
-width:100%;
-background:#0f172a;
-padding:15px 50px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:1000;
-border-bottom:1px solid #1e293b;
-}
-nav h2{color:#38bdf8}
-nav ul{display:flex;gap:25px;list-style:none}
-nav ul li a:hover{color:#38bdf8}
-
-section{padding:100px 8%;min-height:100vh}
-
-/* HERO */
-.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between}
-.hero-text{flex:1;min-width:280px}
-.hero-text h1{font-size:42px;margin-bottom:15px}
-.hero-text span{color:#38bdf8}
-.hero-text p{margin-bottom:25px;color:#cbd5e1}
-
-.btn{
-display:inline-block;
-padding:12px 25px;
-border-radius:30px;
-background:#38bdf8;
-color:#0f172a;
-font-weight:600;
-transition:0.3s;
-}
-.btn:hover{background:#0ea5e9}
-
-.hero-img{flex:1;text-align:center}
-.hero-img img{
-width:260px;
-border-radius:50%;
-border:5px solid #38bdf8;
-box-shadow:0 0 30px rgba(56,189,248,0.4);
-}
-
-/* CARDS */
-.card{
-background:#1e293b;
-padding:25px;
-border-radius:12px;
-margin-bottom:20px;
-transition:0.3s;
-}
-.card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.4)}
-
-h2.section-title{margin-bottom:40px;font-size:32px;color:#38bdf8}
-
-.skills-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
-
-.badge{
-display:inline-block;
-padding:6px 14px;
-border-radius:20px;
-background:#334155;
-margin:5px;
-font-size:14px;
-}
-
-footer{
-text-align:center;
-padding:30px;
-background:#0b1120;
-border-top:1px solid #1e293b;
-}
-
-@media(max-width:900px){
-.hero{flex-direction:column;text-align:center}
-nav{padding:15px 20px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mohd Faizan Azizi — Senior .NET Developer specializing in .NET Core, Microservices, Azure, and enterprise application development.">
+  <meta name="keywords" content=".NET Core, Microservices, Azure, ASP.NET, Web API, SQL Server, Senior Developer">
+  <meta name="author" content="Mohd Faizan Azizi">
+  <title>Mohd Faizan Azizi | Senior .NET Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <div class="page-loader" id="pageLoader" aria-hidden="true">
+    <div class="loader-ring"></div>
+  </div>
 
-<nav>
-<h2>Faizan</h2>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#experience">Experience</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>FA<span class="logo-bracket">/&gt;</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#architecture" class="nav-link">Architecture</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<section class="hero" id="about">
-<div class="hero-text">
-<h1>Mohd <span>Faizan Azizi</span></h1>
-<p>Senior .NET Developer | Microservices | Clean Architecture | Azure AD SSO</p>
-<p>5+ years of experience building enterprise-scale backend systems using .NET Core, Web API, CQRS, MediatR, and API Gateway (Ocelot). Strong in Agile delivery, CI/CD, and client communication.</p>
-<a href="#contact" class="btn">Hire Me</a>
-</div>
-<div class="hero-img">
-<img src="profile2.jpeg" alt="Mohd Faizan Azizi">
-</div>
-</section>
+  <!-- Hero / Landing -->
+  <header class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-text reveal">
+        <p class="hero-eyebrow">Senior Software Engineer</p>
+        <h1 class="hero-title">
+          Mohd Faizan <span class="text-gradient">Azizi</span>
+        </h1>
+        <p class="hero-subtitle">Senior .NET Developer</p>
+        <p class="hero-description">
+          Building scalable, secure enterprise applications with
+          <strong>.NET Core</strong>, <strong>Microservices</strong>, and <strong>Azure</strong>.
+          5+ years delivering end-to-end solutions across cybersecurity, hospitality, and insurance domains.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="assets/Mohd-Faizan-Azizi-Resume.pdf" class="btn btn-secondary" download>Download Resume</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">5+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">3</span>
+            <span class="stat-label">Key Domains</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">Azure</span>
+            <span class="stat-label">Cloud Platform</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="code-window">
+          <div class="code-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="code-filename">DeveloperProfile.cs</span>
+          </div>
+          <pre class="code-body"><code><span class="kw">public class</span> <span class="type">DeveloperProfile</span>
+{
+    <span class="kw">public string</span> Name = <span class="str">"Mohd Faizan Azizi"</span>;
+    <span class="kw">public string</span> Role = <span class="str">"Senior .NET Developer"</span>;
+    <span class="kw">public string[]</span> Stack = {
+        <span class="str">".NET 6/7/8"</span>, <span class="str">"Microservices"</span>,
+        <span class="str">"Azure"</span>, <span class="str">"SQL Server"</span>
+    };
+    <span class="kw">public string[]</span> Domains = {
+        <span class="str">"Cybersecurity"</span>,
+        <span class="str">"Hospitality"</span>,
+        <span class="str">"Insurance"</span>
+    };
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="scroll-indicator" aria-label="Scroll to about section">
+      <span></span>
+    </a>
+  </header>
 
-<section id="skills">
-<h2 class="section-title">Technical Skills</h2>
-<div class="skills-grid">
-<div class="card">
-<h3>Frameworks</h3>
-<div class="badge">.NET Core (.NET 6/8/9)</div>
-<div class="badge">ASP.NET Core Web API</div>
-<div class="badge">gRPC</div>
-</div>
-<div class="card">
-<h3>Architecture</h3>
-<div class="badge">Microservices</div>
-<div class="badge">Clean Architecture</div>
-<div class="badge">CQRS</div>
-<div class="badge">MediatR</div>
-<div class="badge">SOLID</div>
-</div>
-<div class="card">
-<h3>Security</h3>
-<div class="badge">Azure AD SSO</div>
-<div class="badge">OAuth 2.0</div>
-<div class="badge">JWT</div>
-<div class="badge">Claims & Role Auth</div>
-</div>
-<div class="card">
-<h3>Tools</h3>
-<div class="badge">SQL Server</div>
-<div class="badge">EF Core</div>
-<div class="badge">Ocelot Gateway</div>
-<div class="badge">CI/CD</div>
-<div class="badge">Azure Boards</div>
-</div>
-</div>
-</section>
+  <main>
+    <!-- Professional Introduction & About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Introduction</span>
+          <h2 class="section-title">About Me</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-content reveal">
+            <p class="lead">
+              I am a <strong>Senior .NET Developer</strong> with over five years of experience
+              designing and delivering production-grade software for enterprise clients.
+              My work spans microservices architecture, cloud-native deployments on Azure,
+              and full lifecycle API development.
+            </p>
+            <p>
+              I specialize in translating business requirements into maintainable, scalable
+              systems using Clean Architecture, CQRS, and SOLID principles. From Azure AD
+              authentication and Key Vault secret management to CI/CD pipeline automation,
+              I handle the complete delivery pipeline — from architecture decisions to
+              production deployments.
+            </p>
+            <p>
+              I thrive in Agile environments, collaborating with clients and cross-functional
+              teams to solve complex technical challenges and deliver reliable software solutions.
+            </p>
+          </div>
+          <div class="about-highlights reveal">
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <h3>System Design</h3>
+              <p>Scalable architecture, microservices, and API-first design patterns.</p>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+              </div>
+              <h3>Azure Cloud</h3>
+              <p>App Services, Azure AD SSO, Key Vault, and Storage integration.</p>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <h3>End-to-End Delivery</h3>
+              <p>From requirements to CI/CD deployment and production support.</p>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <h3>Agile Delivery</h3>
+              <p>Experienced in Agile/Scrum methodology and client collaboration.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section id="experience">
-<h2 class="section-title">Experience</h2>
+    <!-- Career Summary -->
+    <section class="section section-alt" id="career">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Overview</span>
+          <h2 class="section-title">Career Summary</h2>
+        </div>
+        <div class="career-summary reveal">
+          <p>
+            Senior .NET Developer with <strong>5+ years</strong> of experience building scalable
+            and secure applications using <strong>.NET Core, Microservices, and Azure</strong>.
+            Strong understanding of system design, API architecture, and deployment pipelines.
+            Experienced in delivering end-to-end solutions, handling client requirements,
+            and working in Agile environments.
+          </p>
+          <div class="domain-tags">
+            <span class="domain-tag">Cybersecurity</span>
+            <span class="domain-tag">Hospitality</span>
+            <span class="domain-tag">Insurance / Claims</span>
+            <span class="domain-tag">Enterprise Software</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<h3>Senior .NET Developer – Chetu India Pvt. Ltd. (Oct 2022 – Present)</h3>
-<ul>
-<li>Working on multiple enterprise-scale backend systems using <strong>.NET Core 6/8/9, ASP.NET Core Web API, and SQL Server</strong>.</li>
-<li>Architecting and implementing <strong>Microservices-based solutions</strong> using Clean Architecture principles.</li>
-<li>Applied <strong>CQRS pattern with MediatR</strong> for separation of concerns and maintainable code.</li>
-<li>Integrated <strong>Azure AD Single Sign-On (SSO)</strong> for secure enterprise authentication.</li>
-<li>Implemented <strong>OAuth 2.0, JWT, Role-based & Claims-based authorization</strong>.</li>
-<li>Configured <strong>Ocelot API Gateway</strong> for routing and secure service-to-service communication.</li>
-<li>Participated in Agile/Scrum ceremonies, sprint planning, backlog grooming, and direct client communication.</li>
-<li>Worked with CI/CD pipelines for automated build and deployment.</li>
-</ul>
-</div>
+    <!-- Technical Skills -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Expertise</span>
+          <h2 class="section-title">Technical Skills</h2>
+          <p class="section-subtitle">Verified technologies from professional experience</p>
+        </div>
 
-<div class="card">
-<h3>.NET Developer – Parsh Digital Services (Jul 2020 – Sep 2022)</h3>
-<ul>
-<li>Developed enterprise web applications using <strong>ASP.NET Web Forms, C#, and SQL Server</strong>.</li>
-<li>Designed and optimized stored procedures, views, and database queries.</li>
-<li>Built web, Windows, and console applications.</li>
-<li>Implemented authentication, validation, and business logic modules.</li>
-<li>Delivered multiple projects end-to-end including deployment and support.</li>
-</ul>
-</div>
-</section>
+        <div class="skills-grid">
+          <div class="skill-category reveal">
+            <h3 class="skill-category-title">
+              <span class="skill-icon">&#123; &#125;</span> Programming Languages
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag featured">C#</span>
+              <span class="skill-tag">VB.NET</span>
+              <span class="skill-tag">SQL</span>
+            </div>
+          </div>
 
-<section id="projects">
-<h2 class="section-title">Key Projects</h2>
+          <div class="skill-category reveal">
+            <h3 class="skill-category-title">
+              <span class="skill-icon">&#9881;</span> Frameworks &amp; Technologies
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag featured">.NET Core (.NET 6/7/8)</span>
+              <span class="skill-tag featured">ASP.NET Core</span>
+              <span class="skill-tag featured">Web API</span>
+              <span class="skill-tag">gRPC</span>
+              <span class="skill-tag featured">Entity Framework Core</span>
+              <span class="skill-tag">DevExpress</span>
+            </div>
+          </div>
 
-<div class="card">
-<h3>Cybersecurity Enterprise Application</h3>
-<ul>
-<li>Architected a centralized security management platform for unified policy enforcement and governance.</li>
-<li>Designed analytics and reporting dashboards to track compliance metrics and organizational risk.</li>
-<li>Developed scalable backend services using .NET Core and REST APIs.</li>
-</ul>
-</div>
+          <div class="skill-category reveal">
+            <h3 class="skill-category-title">
+              <span class="skill-icon">&#9729;</span> Cloud &amp; DevOps
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag featured">Azure App Services</span>
+              <span class="skill-tag featured">Azure AD (SSO)</span>
+              <span class="skill-tag featured">Azure Key Vault</span>
+              <span class="skill-tag">Azure Storage</span>
+              <span class="skill-tag featured">CI/CD Pipelines</span>
+              <span class="skill-tag">Azure DevOps</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Release Management</span>
+            </div>
+          </div>
 
-<div class="card">
-<h3>Hotel & Hospitality Management System</h3>
-<ul>
-<li>Designed and developed a scalable serviced accommodation platform for corporate travel & HR teams.</li>
-<li>Implemented <strong>User Management Module</strong> with Azure AD SSO integration.</li>
-<li>Applied secure authentication using OAuth 2.0 and JWT.</li>
-<li>Optimized SQL queries and API performance for high concurrent usage.</li>
-<li>Ensured seamless onboarding and lifecycle support workflows.</li>
-</ul>
-</div>
+          <div class="skill-category reveal">
+            <h3 class="skill-category-title">
+              <span class="skill-icon">&#128451;</span> Database Technologies
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag featured">SQL Server</span>
+              <span class="skill-tag featured">Entity Framework Core</span>
+            </div>
+          </div>
 
-<div class="card">
-<h3>Vehicle Inspection Management System</h3>
-<ul>
-<li>Built microservices-based backend improving road safety and vehicle compliance systems.</li>
-<li>Configured <strong>Ocelot API Gateway</strong> for routing and aggregation.</li>
-<li>Applied Clean Architecture, CQRS, and MediatR patterns.</li>
-<li>Used async/await best practices for high-performance APIs.</li>
-<li>Worked in Agile environment ensuring timely delivery and quality releases.</li>
-</ul>
-</div>
+          <div class="skill-category reveal">
+            <h3 class="skill-category-title">
+              <span class="skill-icon">&#8644;</span> API &amp; Integration
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag featured">REST APIs</span>
+              <span class="skill-tag">API Gateway (Ocelot)</span>
+              <span class="skill-tag">Middleware</span>
+            </div>
+          </div>
 
-<section id="education">
-<h2 class="section-title">Education</h2>
-<div class="card">
-<p><strong>Master of Computer Applications (MCA)</strong><br>Integral University, Lucknow (2018 – 2020)</p>
-<p><strong>Bachelor of Computer Applications (BCA)</strong><br>Integral University, Lucknow (2015 – 2018)</p>
-</div>
-</section>
+          <div class="skill-category reveal">
+            <h3 class="skill-category-title">
+              <span class="skill-icon">&#128736;</span> Tools &amp; Platforms
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Visual Studio</span>
+              <span class="skill-tag">Visual Studio Code</span>
+              <span class="skill-tag">Postman</span>
+              <span class="skill-tag">DevExpress</span>
+            </div>
+          </div>
 
-<section id="languages">
-<h2 class="section-title">Languages</h2>
-<div class="card">
-<p>English – Native</p>
-<p>Hindi – Proficient</p>
-<p>Urdu – Proficient</p>
-</div>
-</section>
+          <div class="skill-category reveal">
+            <h3 class="skill-category-title">
+              <span class="skill-icon">&#127959;</span> Architecture &amp; Patterns
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag featured">Microservices Architecture</span>
+              <span class="skill-tag featured">Clean Architecture</span>
+              <span class="skill-tag featured">CQRS</span>
+              <span class="skill-tag">MediatR</span>
+              <span class="skill-tag featured">SOLID Principles</span>
+              <span class="skill-tag">System Design</span>
+            </div>
+          </div>
 
-<section id="contact">
-<h2 class="section-title">Contact</h2>
-<div class="card">
-<p><strong>Phone:</strong> +91 9170140561</p>
-<p><strong>Email:</strong> faizyazizi143@gmail.com</p>
-<p><strong>Location:</strong> Noida 62, India</p>
-</div>
-</section>
+          <div class="skill-category reveal">
+            <h3 class="skill-category-title">
+              <span class="skill-icon">&#128188;</span> Methodologies
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag featured">Agile / Scrum</span>
+              <span class="skill-tag">End-to-End Deployment</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Debugging</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<footer>
-© 2026 Mohd Faizan Azizi | Senior .NET Developer
-</footer>
+    <!-- Work Experience -->
+    <section class="section section-alt" id="experience">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Career</span>
+          <h2 class="section-title">Work Experience</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h3>Senior .NET Developer</h3>
+                  <p class="company">Chetu India Pvt. Ltd., Noida</p>
+                </div>
+                <span class="timeline-date">Oct 2022 – Mar 2026</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Designed and developed microservices-based applications using .NET Core</li>
+                <li>Applied Clean Architecture and CQRS for better scalability and maintainability</li>
+                <li>Integrated Azure AD SSO for secure authentication and role-based access</li>
+                <li>Deployed applications on Azure App Services and managed configurations</li>
+                <li>Used Azure Key Vault for secure storage of secrets and connection strings</li>
+                <li>Built and maintained CI/CD pipelines for automated build and deployment</li>
+                <li>Improved API performance and handled error logging and monitoring</li>
+                <li>Actively participated in client discussions and architecture decisions</li>
+              </ul>
+            </div>
+          </article>
 
+          <article class="timeline-item reveal">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h3>.NET Developer</h3>
+                  <p class="company">Parsh Digital Services LLP, Noida</p>
+                </div>
+                <span class="timeline-date">Jul 2020 – Sep 2022</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Developed web, Windows, and console applications</li>
+                <li>Designed and maintained SQL Server databases</li>
+                <li>Delivered multiple projects end-to-end</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Portfolio</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-subtitle">Enterprise solutions across cybersecurity, hospitality, and insurance</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-header">
+              <span class="project-domain">Cybersecurity</span>
+              <h3>Cybersecurity Enterprise Application</h3>
+            </div>
+            <p class="project-desc">
+              Centralized enterprise system for managing security policies and access control
+              with compliance monitoring and reporting capabilities.
+            </p>
+            <div class="project-tech">
+              <span>Azure AD</span>
+              <span>.NET Core</span>
+              <span>REST APIs</span>
+              <span>SQL Server</span>
+            </div>
+            <ul class="project-highlights">
+              <li>Implemented authentication using Azure AD</li>
+              <li>Created reporting system for security and compliance monitoring</li>
+              <li>Centralized security policy and access control management</li>
+            </ul>
+            <div class="project-placeholder">
+              <span class="placeholder-badge">Screenshots pending review</span>
+              <p>Project visuals not available in source files. Add screenshots or architecture diagrams to enhance this case study.</p>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-header">
+              <span class="project-domain">Hospitality</span>
+              <h3>Hotel &amp; Hospitality Management System</h3>
+            </div>
+            <p class="project-desc">
+              Scalable platform for accommodation and booking management with APIs
+              supporting the full hospitality lifecycle.
+            </p>
+            <div class="project-tech">
+              <span>.NET Core</span>
+              <span>Web API</span>
+              <span>SQL Server</span>
+              <span>Microservices</span>
+            </div>
+            <ul class="project-highlights">
+              <li>Designed APIs for booking, onboarding, and lifecycle operations</li>
+              <li>Built scalable platform for accommodation management</li>
+              <li>Improved system performance and usability</li>
+            </ul>
+            <div class="project-placeholder">
+              <span class="placeholder-badge">Screenshots pending review</span>
+              <p>Project visuals not available in source files. Add UI screenshots or API documentation to complete this gallery.</p>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-header">
+              <span class="project-domain">Insurance</span>
+              <h3>Claim Management System</h3>
+              <span class="project-client">US-Based Client</span>
+            </div>
+            <p class="project-desc">
+              End-to-end claim lifecycle management system supporting creation through
+              settlement with validation and approval workflows.
+            </p>
+            <div class="project-tech">
+              <span>.NET Core</span>
+              <span>VB.NET</span>
+              <span>SQL Server</span>
+              <span>CI/CD</span>
+            </div>
+            <ul class="project-highlights">
+              <li>Managed complete claim lifecycle from creation to settlement</li>
+              <li>Developed validation and approval workflows</li>
+              <li>Supported legacy (VB.NET) and modern (.NET Core) systems</li>
+              <li>Handled production issues and ensured smooth deployments</li>
+            </ul>
+            <div class="project-placeholder">
+              <span class="placeholder-badge">Screenshots pending review</span>
+              <p>Project visuals not available in source files. Add workflow diagrams or dashboard screenshots for this case study.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Case Studies (Detailed) -->
+    <section class="section section-alt" id="case-studies">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Deep Dive</span>
+          <h2 class="section-title">Project Case Studies</h2>
+        </div>
+
+        <div class="case-studies">
+          <article class="case-study reveal">
+            <div class="case-study-number">01</div>
+            <div class="case-study-body">
+              <h3>Cybersecurity Enterprise Application</h3>
+              <div class="case-meta">
+                <span><strong>Domain:</strong> Cybersecurity / Enterprise Security</span>
+                <span><strong>Role:</strong> Senior .NET Developer</span>
+              </div>
+              <div class="case-section">
+                <h4>Challenge</h4>
+                <p>Enterprise clients needed a centralized platform to manage security policies, control access, and monitor compliance across the organization.</p>
+              </div>
+              <div class="case-section">
+                <h4>Solution</h4>
+                <p>Developed a centralized system with Azure AD authentication for secure, role-based access. Built a comprehensive reporting module for security and compliance monitoring.</p>
+              </div>
+              <div class="case-section">
+                <h4>Key Contributions</h4>
+                <ul>
+                  <li>Azure AD SSO integration for enterprise authentication</li>
+                  <li>Security policy and access control management</li>
+                  <li>Compliance reporting and monitoring system</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="case-study reveal">
+            <div class="case-study-number">02</div>
+            <div class="case-study-body">
+              <h3>Hotel &amp; Hospitality Management System</h3>
+              <div class="case-meta">
+                <span><strong>Domain:</strong> Hospitality / Hotel Management</span>
+                <span><strong>Role:</strong> Senior .NET Developer</span>
+              </div>
+              <div class="case-section">
+                <h4>Challenge</h4>
+                <p>The hospitality industry required a scalable platform to manage accommodations, bookings, and property onboarding with high performance and usability.</p>
+              </div>
+              <div class="case-section">
+                <h4>Solution</h4>
+                <p>Built a scalable platform with dedicated APIs for booking management, property onboarding, and lifecycle operations, with focused performance and usability improvements.</p>
+              </div>
+              <div class="case-section">
+                <h4>Key Contributions</h4>
+                <ul>
+                  <li>RESTful API design for booking and onboarding workflows</li>
+                  <li>Scalable accommodation management platform</li>
+                  <li>Performance and usability optimization</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="case-study reveal">
+            <div class="case-study-number">03</div>
+            <div class="case-study-body">
+              <h3>Claim Management System — US Client</h3>
+              <div class="case-meta">
+                <span><strong>Domain:</strong> Insurance / Claims Processing</span>
+                <span><strong>Role:</strong> Senior .NET Developer</span>
+              </div>
+              <div class="case-section">
+                <h4>Challenge</h4>
+                <p>A US-based insurance client needed a robust claim management system handling the full claim lifecycle while maintaining both legacy and modern technology stacks.</p>
+              </div>
+              <div class="case-section">
+                <h4>Solution</h4>
+                <p>Delivered end-to-end claim lifecycle management with validation and approval workflows. Maintained dual-stack support for VB.NET legacy systems and modern .NET Core applications with production deployment support.</p>
+              </div>
+              <div class="case-section">
+                <h4>Key Contributions</h4>
+                <ul>
+                  <li>Complete claim lifecycle: creation to settlement</li>
+                  <li>Validation and approval workflow development</li>
+                  <li>Legacy (VB.NET) and modern (.NET Core) system support</li>
+                  <li>Production issue resolution and deployment management</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Development -->
+    <section class="section" id="api">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Integration</span>
+          <h2 class="section-title">API Development Experience</h2>
+        </div>
+        <div class="expertise-grid">
+          <div class="expertise-card reveal">
+            <h3>REST API Development</h3>
+            <p>Designed and built RESTful APIs using ASP.NET Core Web API for booking, onboarding, claim processing, and security management workflows.</p>
+          </div>
+          <div class="expertise-card reveal">
+            <h3>gRPC Services</h3>
+            <p>Experience with gRPC for high-performance inter-service communication in microservices architectures.</p>
+          </div>
+          <div class="expertise-card reveal">
+            <h3>API Gateway (Ocelot)</h3>
+            <p>Implemented API Gateway patterns using Ocelot for routing, aggregation, and centralized API management in microservices environments.</p>
+          </div>
+          <div class="expertise-card reveal">
+            <h3>Middleware &amp; Integration</h3>
+            <p>Built custom middleware for authentication, logging, error handling, and cross-cutting concerns across API layers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- System Architecture -->
+    <section class="section section-alt" id="architecture">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Design</span>
+          <h2 class="section-title">System Architecture &amp; Design</h2>
+        </div>
+        <div class="architecture-content">
+          <div class="arch-diagram reveal">
+            <div class="arch-layer">
+              <span class="arch-label">Client Layer</span>
+              <div class="arch-items">
+                <span>Web Applications</span>
+                <span>Windows Apps</span>
+                <span>Console Apps</span>
+              </div>
+            </div>
+            <div class="arch-connector"></div>
+            <div class="arch-layer">
+              <span class="arch-label">API Gateway</span>
+              <div class="arch-items">
+                <span>Ocelot API Gateway</span>
+                <span>Middleware Pipeline</span>
+              </div>
+            </div>
+            <div class="arch-connector"></div>
+            <div class="arch-layer">
+              <span class="arch-label">Microservices (.NET Core)</span>
+              <div class="arch-items">
+                <span>Clean Architecture</span>
+                <span>CQRS + MediatR</span>
+                <span>gRPC / REST</span>
+              </div>
+            </div>
+            <div class="arch-connector"></div>
+            <div class="arch-layer">
+              <span class="arch-label">Data &amp; Cloud (Azure)</span>
+              <div class="arch-items">
+                <span>SQL Server + EF Core</span>
+                <span>Azure AD SSO</span>
+                <span>Key Vault</span>
+                <span>App Services</span>
+              </div>
+            </div>
+            <div class="arch-connector"></div>
+            <div class="arch-layer">
+              <span class="arch-label">DevOps</span>
+              <div class="arch-items">
+                <span>Azure DevOps CI/CD</span>
+                <span>Git</span>
+                <span>Release Management</span>
+              </div>
+            </div>
+            <p class="arch-note">Architecture diagram based on verified resume technologies and project descriptions.</p>
+          </div>
+          <div class="arch-principles reveal">
+            <h3>Design Principles Applied</h3>
+            <ul>
+              <li><strong>Microservices Architecture</strong> — Decomposed monolithic systems into independently deployable services</li>
+              <li><strong>Clean Architecture</strong> — Separation of concerns with domain-driven layering</li>
+              <li><strong>CQRS with MediatR</strong> — Command-query separation for scalable read/write operations</li>
+              <li><strong>SOLID Principles</strong> — Maintainable, testable, and extensible codebases</li>
+              <li><strong>Azure-Native Security</strong> — Azure AD SSO, Key Vault, and role-based access control</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI / Automation - Placeholder -->
+    <section class="section" id="ai">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Innovation</span>
+          <h2 class="section-title">AI / Automation Projects</h2>
+        </div>
+        <div class="placeholder-section reveal">
+          <div class="placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 0 1 4 4v1h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2V6a4 4 0 0 1 4-4z"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M9 17h6"/></svg>
+          </div>
+          <h3>Section Pending Review</h3>
+          <p>No AI or automation projects were found in the available source files. Add project details, descriptions, and screenshots to populate this section.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Open Source - Placeholder -->
+    <section class="section section-alt" id="opensource">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Community</span>
+          <h2 class="section-title">Open Source Contributions</h2>
+        </div>
+        <div class="placeholder-section reveal">
+          <div class="placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </div>
+          <h3>Section Pending Review</h3>
+          <p>No GitHub profile or open source contributions were found in the available source files. Add repository links and contribution details to complete this section.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements - Placeholder -->
+    <section class="section" id="achievements">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Recognition</span>
+          <h2 class="section-title">Achievements &amp; Awards</h2>
+        </div>
+        <div class="placeholder-section reveal">
+          <div class="placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5l2-1l2 1l-2-5M8.21 13.89L7 23l5-3l5 3l-1.21-9.11M12 2l2.4 4.8L20 8l-4 3.9L17 18l-5-2.6L7 18l1-6.1L4 8l5.6-1.2L12 2z"/></svg>
+          </div>
+          <h3>Section Pending Review</h3>
+          <p>No quantified achievements or awards were listed in the resume. Add measurable outcomes (e.g., performance improvements, scale metrics) to strengthen this section.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section section-alt" id="education">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Academics</span>
+          <h2 class="section-title">Education</h2>
+        </div>
+        <div class="education-grid">
+          <article class="education-card reveal">
+            <div class="education-degree">MCA</div>
+            <h3>Master of Computer Applications</h3>
+            <p class="education-school">Integral University, Lucknow</p>
+            <span class="education-year">2018 – 2020</span>
+          </article>
+          <article class="education-card reveal">
+            <div class="education-degree">BCA</div>
+            <h3>Bachelor of Computer Applications</h3>
+            <p class="education-school">Integral University, Lucknow</p>
+            <span class="education-year">2015 – 2018</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications - Placeholder -->
+    <section class="section" id="certifications">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Credentials</span>
+          <h2 class="section-title">Certifications</h2>
+        </div>
+        <div class="placeholder-section reveal">
+          <div class="placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <h3>Section Pending Review</h3>
+          <p>No certifications were listed in the resume or found in source files. Add Azure, .NET, or other certification details and badge images to complete this section.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume Download -->
+    <section class="section section-alt" id="resume">
+      <div class="container">
+        <div class="resume-cta reveal">
+          <div class="resume-cta-content">
+            <h2>Download Resume</h2>
+            <p>Get a detailed overview of my experience, skills, and project history in PDF format.</p>
+          </div>
+          <a href="assets/Mohd-Faizan-Azizi-Resume.pdf" class="btn btn-primary btn-large" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download PDF Resume
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Get in Touch</span>
+          <h2 class="section-title">Contact Information</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card reveal">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            </div>
+            <h3>Email</h3>
+            <a href="mailto:faizyazizi143@gmail.com">faizyazizi143@gmail.com</a>
+          </div>
+          <div class="contact-card reveal">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h3>Phone</h3>
+            <a href="tel:+919170140561">+91 9170140561</a>
+          </div>
+          <div class="contact-card reveal">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>Location</h3>
+            <p>Noida 62, India</p>
+          </div>
+          <div class="contact-card placeholder-card reveal">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <h3>LinkedIn</h3>
+            <p class="placeholder-text">Pending review — add profile URL</p>
+          </div>
+          <div class="contact-card placeholder-card reveal">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </div>
+            <h3>GitHub</h3>
+            <p class="placeholder-text">Pending review — add profile URL</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 Mohd Faizan Azizi. All rights reserved.</p>
+      <p class="footer-role">Senior .NET Developer | .NET Core, Microservices &amp; Azure</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
