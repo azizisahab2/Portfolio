@@ -1,809 +1,605 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mohd Faizan Azizi — Senior .NET Developer specializing in .NET Core, Microservices, Azure, and enterprise application development.">
-  <meta name="keywords" content=".NET Core, Microservices, Azure, ASP.NET, Web API, SQL Server, Senior Developer">
-  <meta name="author" content="Mohd Faizan Azizi">
-  <title>Mohd Faizan Azizi | Senior .NET Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faizan Azizi — Senior .NET Developer &amp; Cloud Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root{
+    --bg: #0A0D12;
+    --surface: #11151D;
+    --surface-2: #161B25;
+    --line: #232936;
+    --ink-100: #EDEFF2;
+    --ink-400: #8A93A3;
+    --amber: #E3A857;
+    --amber-dim: #7A6440;
+    --cyan: #5FD3C4;
+    --radius: 2px;
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+  [data-theme="light"]{
+    --bg: #F1F1EE;
+    --surface: #FFFFFF;
+    --surface-2: #E9E9E4;
+    --line: #D7D7D1;
+    --ink-100: #14171C;
+    --ink-400: #5B6270;
+    --amber: #B9791F;
+    --amber-dim: #C8A467;
+    --cyan: #1E8F80;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink-100);
+    font-family:'Inter', sans-serif;
+    overflow-x:hidden;
+    transition:background .4s var(--ease), color .4s var(--ease);
+  }
+  ::selection{ background:var(--amber); color:#0A0D12; }
+  a{ color:inherit; text-decoration:none; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .display{ font-family:'Space Grotesk', sans-serif; }
+
+  .wrap{ max-width:1280px; margin:0 auto; padding:0 48px; }
+  @media(max-width:768px){ .wrap{ padding:0 24px; } }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:24px 48px;
+    background:linear-gradient(to bottom, rgba(10,13,18,.85) 0%, rgba(10,13,18,.55) 70%, rgba(10,13,18,0) 100%);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+  }
+  [data-theme="light"] .topbar{
+    background:linear-gradient(to bottom, rgba(241,241,238,.88) 0%, rgba(241,241,238,.6) 70%, rgba(241,241,238,0) 100%);
+  }
+  @media(max-width:768px){ .topbar{ padding:20px 24px; } }
+  .topbar .mark{
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:14px;
+    letter-spacing:.03em; color:var(--ink-100); white-space:nowrap;
+  }
+  .topbar .mark span{ color:var(--amber); }
+  .topbar nav{ display:flex; gap:36px; }
+  .topbar nav a{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.06em;
+    color:var(--ink-100); opacity:.7; text-transform:uppercase;
+  }
+  .topbar nav a:hover{ opacity:1; }
+  @media(max-width:640px){ .topbar nav{ display:none; } }
+
+  .theme-toggle{
+    width:44px; height:24px; border-radius:20px; border:1px solid var(--line);
+    position:relative; cursor:pointer; background:transparent; flex-shrink:0;
+  }
+  .theme-toggle .dot{
+    position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%;
+    background:var(--ink-100); transition:transform .35s var(--ease);
+  }
+  [data-theme="light"] .theme-toggle .dot{ transform:translateX(20px); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; min-height:100svh; display:flex; align-items:center;
+    padding-top:110px; padding-bottom:60px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero .wrap{ display:grid; grid-template-columns: 1.05fr .95fr; gap:40px; align-items:center; width:100%; }
+  @media(max-width:980px){ .hero .wrap{ grid-template-columns:1fr; } }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--amber); display:flex; align-items:center; gap:10px;
+    margin-bottom:26px; opacity:0;
+  }
+  .eyebrow::before{ content:''; width:26px; height:1px; background:var(--amber); display:inline-block; }
+
+  .hero h1{
+    font-size:clamp(38px, 5.4vw, 74px); line-height:1.02; font-weight:600;
+    letter-spacing:-.02em;
+  }
+  .hero h1 .line{ overflow:hidden; display:block; }
+  .hero h1 .line span{ display:inline-block; transform:translateY(110%); }
+  .hero h1 .accent{ color:var(--amber); font-style:italic; font-weight:500; }
+
+  .hero p.lede{
+    margin-top:26px; max-width:460px; font-size:17px; line-height:1.65; color:var(--ink-400);
+    opacity:0; transform:translateY(14px);
+  }
+
+  .hero .cta-row{ margin-top:38px; display:flex; gap:18px; align-items:center; opacity:0; transform:translateY(14px); }
+  .btn{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    padding:15px 26px; border-radius:var(--radius); border:1px solid var(--ink-100);
+    display:inline-flex; align-items:center; gap:10px; transition:all .3s var(--ease);
+  }
+  .btn.primary{ background:var(--amber); border-color:var(--amber); color:#0A0D12; font-weight:500;}
+  .btn.primary:hover{ background:transparent; color:var(--amber); }
+  .btn.ghost{ color:var(--ink-100); }
+  .btn.ghost:hover{ background:var(--ink-100); color:var(--bg); }
+
+  .hero-meta{ margin-top:56px; display:flex; gap:36px; opacity:0; }
+  .hero-meta div{ font-family:'JetBrains Mono', monospace; }
+  .hero-meta .num{ font-size:22px; color:var(--ink-100); font-weight:500; }
+  .hero-meta .lbl{ font-size:11px; color:var(--ink-400); letter-spacing:.06em; text-transform:uppercase; margin-top:4px; }
+
+  /* ---------- Orbit sphere ---------- */
+  .orbit-stage{
+    position:relative; height:560px; perspective:1100px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  @media(max-width:980px){ .orbit-stage{ height:400px; margin-top:10px; } }
+  @media(max-width:480px){ .orbit-stage{ height:340px; } }
+
+  .orbit-world{
+    position:relative; width:100%; height:100%; transform-style:preserve-3d; cursor:grab;
+  }
+  .orbit-world.dragging{ cursor:grabbing; }
+
+  .node{
+    position:absolute; top:50%; left:50%;
+    width:104px; height:104px; margin:-52px 0 0 -52px;
+    border-radius:14px; border:1px solid var(--line);
+    background:linear-gradient(155deg, var(--surface-2), var(--surface));
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    box-shadow:0 14px 30px -12px rgba(0,0,0,.6);
+    will-change:transform;
+    user-select:none;
+  }
+  .node .ic{ width:26px; height:26px; color:var(--amber); }
+  .node .lb{
+    font-family:'JetBrains Mono', monospace; font-size:9.5px; letter-spacing:.04em;
+    color:var(--ink-400); text-transform:uppercase; text-align:center; padding:0 8px;
+  }
+  @media(max-width:480px){
+    .node{ width:78px; height:78px; margin:-39px 0 0 -39px; border-radius:10px; }
+    .node .ic{ width:20px; height:20px; }
+    .node .lb{ font-size:8px; }
+  }
+
+  .orbit-hint{
+    position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; color:var(--ink-400);
+    letter-spacing:.08em; text-transform:uppercase; display:flex; align-items:center; gap:8px;
+    opacity:.7;
+  }
+
+  /* ---------- Section headers ---------- */
+  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:56px; }
+  .sec-head .idx{ font-family:'JetBrains Mono', monospace; color:var(--amber); font-size:13px; letter-spacing:.1em; }
+  .sec-head h2{ font-size:clamp(28px,3.4vw,44px); font-weight:600; letter-spacing:-.01em; }
+  .sec-head .sub{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--ink-400); max-width:260px; text-align:right; line-height:1.6; }
+  @media(max-width:700px){ .sec-head{ flex-direction:column; align-items:flex-start; } .sec-head .sub{ text-align:left; } }
+
+  /* ---------- Projects (pinned scroll sequence) ---------- */
+  .projects{ position:relative; padding-top:120px; }
+  .proj-pin{
+    height:420px; position:relative; border-top:1px solid var(--line);
+  }
+  .proj-stage{
+    height:100%; display:grid; grid-template-columns:.85fr 1.15fr; gap:0;
+  }
+  @media(max-width:860px){ .proj-stage{ grid-template-columns:1fr; height:auto; } .proj-pin{ height:auto; } }
+
+  .proj-rail{ position:relative; overflow:hidden; padding:56px 0; border-right:1px solid var(--line); }
+  @media(max-width:860px){ .proj-rail{ border-right:none; padding:32px 0 0; } }
+  .proj-track{ position:relative; }
+  .proj-slot{
+    height:420px; display:flex; flex-direction:column; justify-content:center; padding-right:48px;
+  }
+  @media(max-width:860px){ .proj-slot{ height:auto; padding:0 0 28px; } }
+  .proj-slot .pnum{ font-family:'JetBrains Mono', monospace; color:var(--amber); font-size:13px; margin-bottom:18px; }
+  .proj-slot .ptitle{ font-size:clamp(24px,2.6vw,34px); font-weight:600; line-height:1.12; letter-spacing:-.01em; margin-bottom:10px; }
+  .proj-slot .pdate{ font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--ink-400); letter-spacing:.05em; margin-bottom:20px; }
+  .proj-slot .pdesc{ font-size:14.5px; color:var(--ink-400); line-height:1.7; max-width:420px; margin-bottom:22px; }
+  .stack-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.03em;
+    padding:6px 10px; border:1px solid var(--line); border-radius:20px; color:var(--ink-400);
+  }
+
+  .proj-visual{ position:relative; overflow:hidden; }
+  .vis-slot{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    opacity:0;
+  }
+  .vis-slot.is-active{ opacity:1; }
+  .vis-art{
+    width:82%; height:78%; border-radius:6px; position:relative; overflow:hidden;
+    border:1px solid var(--line);
+    display:flex; align-items:flex-end; padding:28px;
+  }
+  .vis-art .glyph{
+    position:absolute; right:24px; top:24px; font-family:'Space Grotesk',sans-serif;
+    font-size:13vw; font-weight:700; opacity:.10; line-height:1; pointer-events:none;
+  }
+  @media(max-width:860px){ .vis-art .glyph{ font-size:80px; } }
+  .vis-art .cap{ font-family:'JetBrains Mono', monospace; font-size:11px; color:rgba(255,255,255,.85); letter-spacing:.06em; text-transform:uppercase; }
+  .wipe{
+    position:absolute; inset:0; background:var(--bg); z-index:5; transform:translateY(0%);
+  }
+  @media(max-width:860px){ .proj-visual{ height:280px; } .vis-slot{ position:relative; opacity:1; height:280px; } .wipe{ display:none; } }
+
+  /* ---------- About ---------- */
+  .about{ padding:150px 0; border-top:1px solid var(--line); }
+  .about .wrap{ display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; }
+  @media(max-width:860px){ .about .wrap{ grid-template-columns:1fr; gap:36px; } }
+  .about-copy p{ font-size:19px; line-height:1.75; color:var(--ink-400); margin-bottom:22px; }
+  .about-copy p strong{ color:var(--ink-100); font-weight:500; }
+  .about-copy p:first-child{ font-size:23px; color:var(--ink-100); font-family:'Space Grotesk',sans-serif; font-weight:500; line-height:1.5; }
+
+  .credentials{ display:flex; flex-direction:column; gap:0; }
+  .cred-row{ display:flex; justify-content:space-between; padding:18px 0; border-bottom:1px solid var(--line); font-family:'JetBrains Mono', monospace; font-size:12.5px; gap:16px; }
+  .cred-row .k{ color:var(--ink-400); letter-spacing:.04em; }
+  .cred-row .v{ color:var(--ink-100); text-align:right; }
+
+  /* ---------- Contact ---------- */
+  .contact{ padding:150px 0 90px; border-top:1px solid var(--line); }
+  .contact h2{
+    font-size:clamp(38px,7vw,108px); font-weight:600; letter-spacing:-.02em; line-height:1;
+  }
+  .contact .big-link{
+    display:inline-block; margin-top:36px; font-family:'JetBrains Mono', monospace;
+    font-size:clamp(18px,2.4vw,26px); border-bottom:1px solid var(--amber); padding-bottom:6px; color:var(--amber);
+  }
+  .contact-grid{ margin-top:80px; display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  @media(max-width:700px){ .contact-grid{ grid-template-columns:1fr; gap:28px; } }
+  .contact-grid .k{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--amber); letter-spacing:.1em; text-transform:uppercase; margin-bottom:10px; }
+  .contact-grid .v{ font-size:16px; color:var(--ink-100); }
+
+  footer{ border-top:1px solid var(--line); padding:26px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--ink-400); letter-spacing:.04em; }
+  @media(max-width:600px){ footer .wrap{ flex-direction:column; gap:8px; } }
+</style>
 </head>
 <body>
-  <div class="page-loader" id="pageLoader" aria-hidden="true">
-    <div class="loader-ring"></div>
+
+<div class="topbar">
+  <div class="mark">MOHD FAIZAN<span> AZIZI</span></div>
+  <nav>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode"><span class="dot"></span></button>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" id="ev1">Senior .NET Developer · Cloud Architect</div>
+      <h1 class="display">
+        <span class="line"><span>Backend systems</span></span>
+        <span class="line"><span>that don't <span class="accent">flinch</span></span></span>
+        <span class="line"><span>at scale.</span></span>
+      </h1>
+      <p class="lede" id="ev2">Five-plus years turning monoliths into microservices and shipping Azure-native platforms that hold up under real traffic — from hospitality booking engines to industrial security tooling.</p>
+      <div class="cta-row" id="ev3">
+        <a href="#work" class="btn primary">View Work →</a>
+        <a href="mailto:faizyazizi143@gmail.com" class="btn ghost">Get in touch</a>
+      </div>
+      <div class="hero-meta" id="ev4">
+        <div><div class="num mono">5+</div><div class="lbl">Years shipping .NET</div></div>
+        <div><div class="num mono">4</div><div class="lbl">Platforms architected</div></div>
+        <div><div class="num mono">10K+</div><div class="lbl">Daily txns handled</div></div>
+      </div>
+    </div>
+
+    <div class="orbit-stage" id="orbitStage">
+      <div class="orbit-world" id="orbitWorld"></div>
+      <div class="orbit-hint">drag to spin</div>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="idx">01 / Selected Work</div>
+        <h2 class="display">Featured Projects</h2>
+      </div>
+      <div class="sub">Four platforms, four different problems — booking logistics, inspection workflows, OT security, and financial automation.</div>
+    </div>
   </div>
 
-  <nav class="navbar" id="navbar">
-    <div class="container nav-container">
-      <a href="#hero" class="nav-logo">
-        <span class="logo-bracket">&lt;</span>FA<span class="logo-bracket">/&gt;</span>
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#architecture" class="nav-link">Architecture</a></li>
-        <li><a href="#education" class="nav-link">Education</a></li>
-        <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div class="proj-pin" id="projPin">
+    <div class="proj-stage">
+      <div class="proj-rail">
+        <div class="proj-track" id="projTrack">
 
-  <!-- Hero / Landing -->
-  <header class="hero" id="hero">
-    <div class="hero-bg">
-      <div class="hero-grid"></div>
-      <div class="hero-glow hero-glow-1"></div>
-      <div class="hero-glow hero-glow-2"></div>
-    </div>
-    <div class="container hero-content">
-      <div class="hero-text reveal">
-        <p class="hero-eyebrow">Senior Software Engineer</p>
-        <h1 class="hero-title">
-          Mohd Faizan <span class="text-gradient">Azizi</span>
-        </h1>
-        <p class="hero-subtitle">Senior .NET Developer</p>
-        <p class="hero-description">
-          Building scalable, secure enterprise applications with
-          <strong>.NET Core</strong>, <strong>Microservices</strong>, and <strong>Azure</strong>.
-          5+ years delivering end-to-end solutions across cybersecurity, hospitality, and insurance domains.
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="assets/Mohd-Faizan-Azizi-Resume.pdf" class="btn btn-secondary" download>Download Resume</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-value">5+</span>
-            <span class="stat-label">Years Experience</span>
+          <div class="proj-slot" data-i="0">
+            <div class="pnum mono">01 / 04</div>
+            <div class="ptitle display">Hospitality &amp; Hotel Management Platform</div>
+            <div class="pdate mono">Feb 2025 — Present</div>
+            <div class="pdesc">Multi-tenant booking platform with geolocation search, live inventory from SABRE and CodeOne, and an event-driven core running on Azure Functions and Service Bus.</div>
+            <div class="stack-row">
+              <span class="tag">.NET 8</span><span class="tag">Angular 18</span><span class="tag">React</span><span class="tag">Azure Functions</span><span class="tag">Kubernetes</span>
+            </div>
           </div>
-          <div class="stat">
-            <span class="stat-value">3</span>
-            <span class="stat-label">Key Domains</span>
+
+          <div class="proj-slot" data-i="1">
+            <div class="pnum mono">02 / 04</div>
+            <div class="ptitle display">Vehicle Inspection &amp; Automotive Support System</div>
+            <div class="pdate mono">Nov 2023 — Feb 2025</div>
+            <div class="pdesc">End-to-end inspection and certification workflows with DevExpress-powered reporting, custom grid tooling, and production support across the full inspection lifecycle.</div>
+            <div class="stack-row">
+              <span class="tag">ASP.NET MVC</span><span class="tag">ASP.NET Core</span><span class="tag">DevExpress</span><span class="tag">SQL Server</span>
+            </div>
           </div>
-          <div class="stat">
-            <span class="stat-value">Azure</span>
-            <span class="stat-label">Cloud Platform</span>
+
+          <div class="proj-slot" data-i="2">
+            <div class="pnum mono">03 / 04</div>
+            <div class="ptitle display">Industrial Cybersecurity Platform (ICS/OT)</div>
+            <div class="pdate mono">Dec 2022 — Nov 2023</div>
+            <div class="pdesc">Asset discovery and inventory engine for OT/ICS environments — SSH, WMI, and PowerShell collectors feeding a microservices backend behind an Ocelot gateway.</div>
+            <div class="stack-row">
+              <span class="tag">.NET 8</span><span class="tag">React</span><span class="tag">SSH.NET</span><span class="tag">Docker</span><span class="tag">Azure Key Vault</span>
+            </div>
           </div>
+
+          <div class="proj-slot" data-i="3">
+            <div class="pnum mono">04 / 04</div>
+            <div class="ptitle display">Restaurant Financial Report Automation</div>
+            <div class="pdate mono">Nov 2020 — Oct 2022</div>
+            <div class="pdesc">Unattended reporting pipeline — Windows Services generating daily financial reports across restaurant locations, delivered over SFTP with automated notifications.</div>
+            <div class="stack-row">
+              <span class="tag">.NET</span><span class="tag">C#</span><span class="tag">Windows Service</span><span class="tag">SFTP</span><span class="tag">SMTP</span>
+            </div>
+          </div>
+
         </div>
       </div>
-      <div class="hero-visual reveal">
-        <div class="code-window">
-          <div class="code-header">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-            <span class="code-filename">DeveloperProfile.cs</span>
-          </div>
-          <pre class="code-body"><code><span class="kw">public class</span> <span class="type">DeveloperProfile</span>
-{
-    <span class="kw">public string</span> Name = <span class="str">"Mohd Faizan Azizi"</span>;
-    <span class="kw">public string</span> Role = <span class="str">"Senior .NET Developer"</span>;
-    <span class="kw">public string[]</span> Stack = {
-        <span class="str">".NET 6/7/8"</span>, <span class="str">"Microservices"</span>,
-        <span class="str">"Azure"</span>, <span class="str">"SQL Server"</span>
+
+      <div class="proj-visual" id="projVisual">
+        <div class="wipe" id="projWipe"></div>
+        <div class="vis-slot is-active" data-i="0"><div class="vis-art" style="background:linear-gradient(150deg,#3B2E17,#151922);"><span class="glyph">01</span><span class="cap mono">Hospitality Platform</span></div></div>
+        <div class="vis-slot" data-i="1"><div class="vis-art" style="background:linear-gradient(150deg,#26313C,#141821);"><span class="glyph">02</span><span class="cap mono">Vehicle Inspection</span></div></div>
+        <div class="vis-slot" data-i="2"><div class="vis-art" style="background:linear-gradient(150deg,#33211C,#141821);"><span class="glyph">03</span><span class="cap mono">ICS/OT Security</span></div></div>
+        <div class="vis-slot" data-i="3"><div class="vis-art" style="background:linear-gradient(150deg,#1E3630,#141821);"><span class="glyph">04</span><span class="cap mono">Report Automation</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="sec-head" style="grid-column:1/-1; margin-bottom:0;">
+      <div><div class="idx">02 / Background</div><h2 class="display">About Me</h2></div>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:56px;">
+    <div class="about-copy">
+      <p>I studied computer applications in Lucknow, moved to Noida for my first developer job, and have spent the years since figuring out how to make backend systems survive contact with real users.</p>
+      <p>I started at <strong>Parsh Digital Services</strong> writing .NET Framework apps end-to-end — requirements, database design, QA, the whole loop. That grounding in ownership is still how I approach every system I build.</p>
+      <p>At <strong>Chetu India</strong>, that turned into architecting microservices platforms on .NET Core and Azure: breaking monoliths apart, wiring up CI/CD, securing secrets in Key Vault, and partnering directly with clients on architecture reviews for teams of six to ten engineers.</p>
+      <p>What I care about hasn't changed much — clean architecture, defensible decisions, and systems that hold up long after the demo.</p>
+    </div>
+    <div class="credentials">
+      <div class="cred-row"><span class="k">LOCATION</span><span class="v">Noida, Uttar Pradesh, India</span></div>
+      <div class="cred-row"><span class="k">ROLE</span><span class="v">Senior .NET Developer</span></div>
+      <div class="cred-row"><span class="k">CURRENT / PREV</span><span class="v">Chetu India Pvt. Ltd. · Parsh Digital Services LLP</span></div>
+      <div class="cred-row"><span class="k">EDUCATION</span><span class="v">MCA &amp; BCA, Integral University, Lucknow</span></div>
+      <div class="cred-row"><span class="k">CLOUD</span><span class="v">Azure — App Services, Functions, AKS, Key Vault, Service Bus</span></div>
+      <div class="cred-row"><span class="k">CORE STACK</span><span class="v">.NET Core 6/7/8 · C# · SQL Server · Docker · Kubernetes</span></div>
+      <div class="cred-row"><span class="k">FOCUS</span><span class="v">Microservices · Clean Architecture · CQRS</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="idx mono" style="color:var(--amber); font-size:13px; margin-bottom:22px;">03 / Contact</div>
+    <h2 class="display">Let's build<br>something that lasts.</h2>
+    <a href="mailto:faizyazizi143@gmail.com" class="big-link">faizyazizi143@gmail.com</a>
+
+    <div class="contact-grid">
+      <div><div class="k">Phone</div><div class="v mono">+91 91701 40561</div></div>
+      <div><div class="k">Location</div><div class="v mono">Noida, Uttar Pradesh, IN</div></div>
+      <div><div class="k">Availability</div><div class="v mono">Open to senior / lead roles</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 MOHD FAIZAN AZIZI</span>
+    <span>BUILT WITH .NET-GRADE ATTENTION TO DETAIL</span>
+  </div>
+</footer>
+
+<script>
+/* ================= THEME TOGGLE ================= */
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme', cur === 'light' ? 'dark' : 'light');
+});
+
+/* ================= HERO INTRO SEQUENCE ================= */
+window.addEventListener('DOMContentLoaded', () => {
+  const tl = gsap.timeline({ defaults:{ ease:'expo.out' } });
+  tl.to('.eyebrow', { opacity:1, duration:.7 }, 0.1)
+    .to('.hero h1 .line span', { y:'0%', duration:1.1, stagger:.09 }, 0.15)
+    .to('.hero p.lede', { opacity:1, y:0, duration:.9 }, 0.55)
+    .to('.hero .cta-row', { opacity:1, y:0, duration:.9 }, 0.68)
+    .to('.hero-meta', { opacity:1, duration:.9 }, 0.8);
+});
+
+/* ================= 3D ORBIT SPHERE ================= */
+(function(){
+  const stage = document.getElementById('orbitStage');
+  const world = document.getElementById('orbitWorld');
+
+  const nodes = [
+    {lb:'.NET Core', ic:'⬡'}, {lb:'Azure', ic:'☁'}, {lb:'Kubernetes', ic:'⎈'},
+    {lb:'Docker', ic:'▣'}, {lb:'Microservices', ic:'⧉'}, {lb:'SQL Server', ic:'▤'},
+    {lb:'React', ic:'⚛'}, {lb:'Angular', ic:'▲'}, {lb:'CQRS', ic:'⇄'},
+    {lb:'Azure Functions', ic:'ƒ'}, {lb:'Key Vault', ic:'⚿'}, {lb:'Service Bus', ic:'⇌'},
+    {lb:'C#', ic:'#'}, {lb:'CI / CD', ic:'⟲'}
+  ];
+
+  const els = nodes.map(n => {
+    const el = document.createElement('div');
+    el.className = 'node';
+    el.innerHTML = `<div class="ic">${n.ic}</div><div class="lb">${n.lb}</div>`;
+    world.appendChild(el);
+    return el;
+  });
+
+  // distribute on a fibonacci sphere
+  const R = 210;
+  const N = els.length;
+  const pts = els.map((el, i) => {
+    const y = 1 - (i / (N - 1)) * 2;
+    const radiusAtY = Math.sqrt(1 - y * y);
+    const theta = i * Math.PI * (3 - Math.sqrt(5));
+    return {
+      x: Math.cos(theta) * radiusAtY,
+      y: y,
+      z: Math.sin(theta) * radiusAtY,
+      el
     };
-    <span class="kw">public string[]</span> Domains = {
-        <span class="str">"Cybersecurity"</span>,
-        <span class="str">"Hospitality"</span>,
-        <span class="str">"Insurance"</span>
-    };
-}</code></pre>
-        </div>
-      </div>
-    </div>
-    <a href="#about" class="scroll-indicator" aria-label="Scroll to about section">
-      <span></span>
-    </a>
-  </header>
+  });
 
-  <main>
-    <!-- Professional Introduction & About -->
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Introduction</span>
-          <h2 class="section-title">About Me</h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-content reveal">
-            <p class="lead">
-              I am a <strong>Senior .NET Developer</strong> with over five years of experience
-              designing and delivering production-grade software for enterprise clients.
-              My work spans microservices architecture, cloud-native deployments on Azure,
-              and full lifecycle API development.
-            </p>
-            <p>
-              I specialize in translating business requirements into maintainable, scalable
-              systems using Clean Architecture, CQRS, and SOLID principles. From Azure AD
-              authentication and Key Vault secret management to CI/CD pipeline automation,
-              I handle the complete delivery pipeline — from architecture decisions to
-              production deployments.
-            </p>
-            <p>
-              I thrive in Agile environments, collaborating with clients and cross-functional
-              teams to solve complex technical challenges and deliver reliable software solutions.
-            </p>
-          </div>
-          <div class="about-highlights reveal">
-            <div class="highlight-card">
-              <div class="highlight-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </div>
-              <h3>System Design</h3>
-              <p>Scalable architecture, microservices, and API-first design patterns.</p>
-            </div>
-            <div class="highlight-card">
-              <div class="highlight-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-              </div>
-              <h3>Azure Cloud</h3>
-              <p>App Services, Azure AD SSO, Key Vault, and Storage integration.</p>
-            </div>
-            <div class="highlight-card">
-              <div class="highlight-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </div>
-              <h3>End-to-End Delivery</h3>
-              <p>From requirements to CI/CD deployment and production support.</p>
-            </div>
-            <div class="highlight-card">
-              <div class="highlight-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              </div>
-              <h3>Agile Delivery</h3>
-              <p>Experienced in Agile/Scrum methodology and client collaboration.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  let rotY = 0, rotX = -0.15;
+  let velY = 0.0022, velX = 0;
+  let dragging = false, lastX = 0, lastY = 0;
+  let hoveredIdx = -1;
 
-    <!-- Career Summary -->
-    <section class="section section-alt" id="career">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Overview</span>
-          <h2 class="section-title">Career Summary</h2>
-        </div>
-        <div class="career-summary reveal">
-          <p>
-            Senior .NET Developer with <strong>5+ years</strong> of experience building scalable
-            and secure applications using <strong>.NET Core, Microservices, and Azure</strong>.
-            Strong understanding of system design, API architecture, and deployment pipelines.
-            Experienced in delivering end-to-end solutions, handling client requirements,
-            and working in Agile environments.
-          </p>
-          <div class="domain-tags">
-            <span class="domain-tag">Cybersecurity</span>
-            <span class="domain-tag">Hospitality</span>
-            <span class="domain-tag">Insurance / Claims</span>
-            <span class="domain-tag">Enterprise Software</span>
-          </div>
-        </div>
-      </div>
-    </section>
+  function project(){
+    const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+    const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
 
-    <!-- Technical Skills -->
-    <section class="section" id="skills">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Expertise</span>
-          <h2 class="section-title">Technical Skills</h2>
-          <p class="section-subtitle">Verified technologies from professional experience</p>
-        </div>
+    const scaleStage = stage.clientWidth < 420 ? 0.68 : 1;
+    const radius = R * scaleStage;
 
-        <div class="skills-grid">
-          <div class="skill-category reveal">
-            <h3 class="skill-category-title">
-              <span class="skill-icon">&#123; &#125;</span> Programming Languages
-            </h3>
-            <div class="skill-tags">
-              <span class="skill-tag featured">C#</span>
-              <span class="skill-tag">VB.NET</span>
-              <span class="skill-tag">SQL</span>
-            </div>
-          </div>
+    pts.forEach((p, idx) => {
+      // rotate around Y then X
+      let x = p.x * cosY - p.z * sinY;
+      let z = p.x * sinY + p.z * cosY;
+      let y = p.y * cosX - z * sinX;
+      let zz = p.y * sinX + z * cosX;
 
-          <div class="skill-category reveal">
-            <h3 class="skill-category-title">
-              <span class="skill-icon">&#9881;</span> Frameworks &amp; Technologies
-            </h3>
-            <div class="skill-tags">
-              <span class="skill-tag featured">.NET Core (.NET 6/7/8)</span>
-              <span class="skill-tag featured">ASP.NET Core</span>
-              <span class="skill-tag featured">Web API</span>
-              <span class="skill-tag">gRPC</span>
-              <span class="skill-tag featured">Entity Framework Core</span>
-              <span class="skill-tag">DevExpress</span>
-            </div>
-          </div>
+      const persp = 620 / (620 - zz * radius);
+      let sx = x * radius * persp;
+      let sy = y * radius * persp;
+      let scale = persp * 0.62;
 
-          <div class="skill-category reveal">
-            <h3 class="skill-category-title">
-              <span class="skill-icon">&#9729;</span> Cloud &amp; DevOps
-            </h3>
-            <div class="skill-tags">
-              <span class="skill-tag featured">Azure App Services</span>
-              <span class="skill-tag featured">Azure AD (SSO)</span>
-              <span class="skill-tag featured">Azure Key Vault</span>
-              <span class="skill-tag">Azure Storage</span>
-              <span class="skill-tag featured">CI/CD Pipelines</span>
-              <span class="skill-tag">Azure DevOps</span>
-              <span class="skill-tag">Git</span>
-              <span class="skill-tag">Release Management</span>
-            </div>
-          </div>
+      if (idx === hoveredIdx){
+        scale = scale * 1.35;
+        sx *= 1.06; sy *= 1.06;
+        p.el.style.zIndex = 999;
+      } else {
+        p.el.style.zIndex = Math.round((zz + 1.2) * 100);
+        p.el.style.opacity = 0.45 + 0.55 * ((zz + 1) / 2);
+      }
+      if (idx === hoveredIdx) p.el.style.opacity = 1;
 
-          <div class="skill-category reveal">
-            <h3 class="skill-category-title">
-              <span class="skill-icon">&#128451;</span> Database Technologies
-            </h3>
-            <div class="skill-tags">
-              <span class="skill-tag featured">SQL Server</span>
-              <span class="skill-tag featured">Entity Framework Core</span>
-            </div>
-          </div>
+      p.el.style.transform = `translate3d(${sx}px, ${sy}px, 0) scale(${scale})`;
+    });
+  }
 
-          <div class="skill-category reveal">
-            <h3 class="skill-category-title">
-              <span class="skill-icon">&#8644;</span> API &amp; Integration
-            </h3>
-            <div class="skill-tags">
-              <span class="skill-tag featured">REST APIs</span>
-              <span class="skill-tag">API Gateway (Ocelot)</span>
-              <span class="skill-tag">Middleware</span>
-            </div>
-          </div>
+  function loop(){
+    if (!dragging){
+      if (hoveredIdx === -1){
+        rotY += velY;
+        rotX += velX;
+        // damping momentum back to idle drift
+        velY += (0.0022 - velY) * 0.02;
+        velX *= 0.94;
+      }
+    }
+    project();
+    requestAnimationFrame(loop);
+  }
 
-          <div class="skill-category reveal">
-            <h3 class="skill-category-title">
-              <span class="skill-icon">&#128736;</span> Tools &amp; Platforms
-            </h3>
-            <div class="skill-tags">
-              <span class="skill-tag">Visual Studio</span>
-              <span class="skill-tag">Visual Studio Code</span>
-              <span class="skill-tag">Postman</span>
-              <span class="skill-tag">DevExpress</span>
-            </div>
-          </div>
+  world.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    world.classList.add('dragging');
+    lastX = e.clientX; lastY = e.clientY;
+    world.setPointerCapture(e.pointerId);
+  });
+  world.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX, dy = e.clientY - lastY;
+    lastX = e.clientX; lastY = e.clientY;
+    rotY += dx * 0.006;
+    rotX += dy * 0.006;
+    rotX = Math.max(-1.1, Math.min(1.1, rotX));
+    velY = dx * 0.0009;
+    velX = dy * 0.0009;
+  });
+  function endDrag(e){
+    dragging = false;
+    world.classList.remove('dragging');
+  }
+  world.addEventListener('pointerup', endDrag);
+  world.addEventListener('pointerleave', endDrag);
 
-          <div class="skill-category reveal">
-            <h3 class="skill-category-title">
-              <span class="skill-icon">&#127959;</span> Architecture &amp; Patterns
-            </h3>
-            <div class="skill-tags">
-              <span class="skill-tag featured">Microservices Architecture</span>
-              <span class="skill-tag featured">Clean Architecture</span>
-              <span class="skill-tag featured">CQRS</span>
-              <span class="skill-tag">MediatR</span>
-              <span class="skill-tag featured">SOLID Principles</span>
-              <span class="skill-tag">System Design</span>
-            </div>
-          </div>
+  els.forEach((el, idx) => {
+    el.addEventListener('pointerenter', () => { hoveredIdx = idx; });
+    el.addEventListener('pointerleave', () => { hoveredIdx = -1; });
+  });
 
-          <div class="skill-category reveal">
-            <h3 class="skill-category-title">
-              <span class="skill-icon">&#128188;</span> Methodologies
-            </h3>
-            <div class="skill-tags">
-              <span class="skill-tag featured">Agile / Scrum</span>
-              <span class="skill-tag">End-to-End Deployment</span>
-              <span class="skill-tag">Problem Solving</span>
-              <span class="skill-tag">Debugging</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  project();
+  loop();
+})();
 
-    <!-- Work Experience -->
-    <section class="section section-alt" id="experience">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Career</span>
-          <h2 class="section-title">Work Experience</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item reveal">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
-              <div class="timeline-header">
-                <div>
-                  <h3>Senior .NET Developer</h3>
-                  <p class="company">Chetu India Pvt. Ltd., Noida</p>
-                </div>
-                <span class="timeline-date">Oct 2022 – Mar 2026</span>
-              </div>
-              <ul class="timeline-list">
-                <li>Designed and developed microservices-based applications using .NET Core</li>
-                <li>Applied Clean Architecture and CQRS for better scalability and maintainability</li>
-                <li>Integrated Azure AD SSO for secure authentication and role-based access</li>
-                <li>Deployed applications on Azure App Services and managed configurations</li>
-                <li>Used Azure Key Vault for secure storage of secrets and connection strings</li>
-                <li>Built and maintained CI/CD pipelines for automated build and deployment</li>
-                <li>Improved API performance and handled error logging and monitoring</li>
-                <li>Actively participated in client discussions and architecture decisions</li>
-              </ul>
-            </div>
-          </article>
+/* ================= SCROLL-TRIGGERED PROJECT SEQUENCE ================= */
+gsap.registerPlugin(ScrollTrigger);
 
-          <article class="timeline-item reveal">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
-              <div class="timeline-header">
-                <div>
-                  <h3>.NET Developer</h3>
-                  <p class="company">Parsh Digital Services LLP, Noida</p>
-                </div>
-                <span class="timeline-date">Jul 2020 – Sep 2022</span>
-              </div>
-              <ul class="timeline-list">
-                <li>Developed web, Windows, and console applications</li>
-                <li>Designed and maintained SQL Server databases</li>
-                <li>Delivered multiple projects end-to-end</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+(function(){
+  const isDesktop = window.matchMedia('(min-width:861px)').matches;
+  if (!isDesktop) return; // mobile falls back to static stacked layout (see CSS)
 
-    <!-- Featured Projects -->
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Portfolio</span>
-          <h2 class="section-title">Featured Projects</h2>
-          <p class="section-subtitle">Enterprise solutions across cybersecurity, hospitality, and insurance</p>
-        </div>
+  const slots = gsap.utils.toArray('.proj-slot');
+  const visSlots = gsap.utils.toArray('.vis-slot');
+  const track = document.getElementById('projTrack');
+  const wipe = document.getElementById('projWipe');
+  const n = slots.length;
+  const slotH = 420;
 
-        <div class="projects-grid">
-          <article class="project-card reveal">
-            <div class="project-header">
-              <span class="project-domain">Cybersecurity</span>
-              <h3>Cybersecurity Enterprise Application</h3>
-            </div>
-            <p class="project-desc">
-              Centralized enterprise system for managing security policies and access control
-              with compliance monitoring and reporting capabilities.
-            </p>
-            <div class="project-tech">
-              <span>Azure AD</span>
-              <span>.NET Core</span>
-              <span>REST APIs</span>
-              <span>SQL Server</span>
-            </div>
-            <ul class="project-highlights">
-              <li>Implemented authentication using Azure AD</li>
-              <li>Created reporting system for security and compliance monitoring</li>
-              <li>Centralized security policy and access control management</li>
-            </ul>
-            <div class="project-placeholder">
-              <span class="placeholder-badge">Screenshots pending review</span>
-              <p>Project visuals not available in source files. Add screenshots or architecture diagrams to enhance this case study.</p>
-            </div>
-          </article>
+  // start fully revealed on project 0
+  gsap.set(wipe, { yPercent:-100 });
 
-          <article class="project-card reveal">
-            <div class="project-header">
-              <span class="project-domain">Hospitality</span>
-              <h3>Hotel &amp; Hospitality Management System</h3>
-            </div>
-            <p class="project-desc">
-              Scalable platform for accommodation and booking management with APIs
-              supporting the full hospitality lifecycle.
-            </p>
-            <div class="project-tech">
-              <span>.NET Core</span>
-              <span>Web API</span>
-              <span>SQL Server</span>
-              <span>Microservices</span>
-            </div>
-            <ul class="project-highlights">
-              <li>Designed APIs for booking, onboarding, and lifecycle operations</li>
-              <li>Built scalable platform for accommodation management</li>
-              <li>Improved system performance and usability</li>
-            </ul>
-            <div class="project-placeholder">
-              <span class="placeholder-badge">Screenshots pending review</span>
-              <p>Project visuals not available in source files. Add UI screenshots or API documentation to complete this gallery.</p>
-            </div>
-          </article>
+  const tl = gsap.timeline({
+    scrollTrigger:{
+      trigger:'#projPin',
+      start:'top top+=90',
+      end:() => '+=' + (slotH * (n - 1) * 1.6 + 300),
+      scrub:0.6,
+      pin:true,
+      anticipatePin:1,
+    }
+  });
 
-          <article class="project-card reveal">
-            <div class="project-header">
-              <span class="project-domain">Insurance</span>
-              <h3>Claim Management System</h3>
-              <span class="project-client">US-Based Client</span>
-            </div>
-            <p class="project-desc">
-              End-to-end claim lifecycle management system supporting creation through
-              settlement with validation and approval workflows.
-            </p>
-            <div class="project-tech">
-              <span>.NET Core</span>
-              <span>VB.NET</span>
-              <span>SQL Server</span>
-              <span>CI/CD</span>
-            </div>
-            <ul class="project-highlights">
-              <li>Managed complete claim lifecycle from creation to settlement</li>
-              <li>Developed validation and approval workflows</li>
-              <li>Supported legacy (VB.NET) and modern (.NET Core) systems</li>
-              <li>Handled production issues and ensured smooth deployments</li>
-            </ul>
-            <div class="project-placeholder">
-              <span class="placeholder-badge">Screenshots pending review</span>
-              <p>Project visuals not available in source files. Add workflow diagrams or dashboard screenshots for this case study.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Project Case Studies (Detailed) -->
-    <section class="section section-alt" id="case-studies">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Deep Dive</span>
-          <h2 class="section-title">Project Case Studies</h2>
-        </div>
-
-        <div class="case-studies">
-          <article class="case-study reveal">
-            <div class="case-study-number">01</div>
-            <div class="case-study-body">
-              <h3>Cybersecurity Enterprise Application</h3>
-              <div class="case-meta">
-                <span><strong>Domain:</strong> Cybersecurity / Enterprise Security</span>
-                <span><strong>Role:</strong> Senior .NET Developer</span>
-              </div>
-              <div class="case-section">
-                <h4>Challenge</h4>
-                <p>Enterprise clients needed a centralized platform to manage security policies, control access, and monitor compliance across the organization.</p>
-              </div>
-              <div class="case-section">
-                <h4>Solution</h4>
-                <p>Developed a centralized system with Azure AD authentication for secure, role-based access. Built a comprehensive reporting module for security and compliance monitoring.</p>
-              </div>
-              <div class="case-section">
-                <h4>Key Contributions</h4>
-                <ul>
-                  <li>Azure AD SSO integration for enterprise authentication</li>
-                  <li>Security policy and access control management</li>
-                  <li>Compliance reporting and monitoring system</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="case-study reveal">
-            <div class="case-study-number">02</div>
-            <div class="case-study-body">
-              <h3>Hotel &amp; Hospitality Management System</h3>
-              <div class="case-meta">
-                <span><strong>Domain:</strong> Hospitality / Hotel Management</span>
-                <span><strong>Role:</strong> Senior .NET Developer</span>
-              </div>
-              <div class="case-section">
-                <h4>Challenge</h4>
-                <p>The hospitality industry required a scalable platform to manage accommodations, bookings, and property onboarding with high performance and usability.</p>
-              </div>
-              <div class="case-section">
-                <h4>Solution</h4>
-                <p>Built a scalable platform with dedicated APIs for booking management, property onboarding, and lifecycle operations, with focused performance and usability improvements.</p>
-              </div>
-              <div class="case-section">
-                <h4>Key Contributions</h4>
-                <ul>
-                  <li>RESTful API design for booking and onboarding workflows</li>
-                  <li>Scalable accommodation management platform</li>
-                  <li>Performance and usability optimization</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="case-study reveal">
-            <div class="case-study-number">03</div>
-            <div class="case-study-body">
-              <h3>Claim Management System — US Client</h3>
-              <div class="case-meta">
-                <span><strong>Domain:</strong> Insurance / Claims Processing</span>
-                <span><strong>Role:</strong> Senior .NET Developer</span>
-              </div>
-              <div class="case-section">
-                <h4>Challenge</h4>
-                <p>A US-based insurance client needed a robust claim management system handling the full claim lifecycle while maintaining both legacy and modern technology stacks.</p>
-              </div>
-              <div class="case-section">
-                <h4>Solution</h4>
-                <p>Delivered end-to-end claim lifecycle management with validation and approval workflows. Maintained dual-stack support for VB.NET legacy systems and modern .NET Core applications with production deployment support.</p>
-              </div>
-              <div class="case-section">
-                <h4>Key Contributions</h4>
-                <ul>
-                  <li>Complete claim lifecycle: creation to settlement</li>
-                  <li>Validation and approval workflow development</li>
-                  <li>Legacy (VB.NET) and modern (.NET Core) system support</li>
-                  <li>Production issue resolution and deployment management</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- API Development -->
-    <section class="section" id="api">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Integration</span>
-          <h2 class="section-title">API Development Experience</h2>
-        </div>
-        <div class="expertise-grid">
-          <div class="expertise-card reveal">
-            <h3>REST API Development</h3>
-            <p>Designed and built RESTful APIs using ASP.NET Core Web API for booking, onboarding, claim processing, and security management workflows.</p>
-          </div>
-          <div class="expertise-card reveal">
-            <h3>gRPC Services</h3>
-            <p>Experience with gRPC for high-performance inter-service communication in microservices architectures.</p>
-          </div>
-          <div class="expertise-card reveal">
-            <h3>API Gateway (Ocelot)</h3>
-            <p>Implemented API Gateway patterns using Ocelot for routing, aggregation, and centralized API management in microservices environments.</p>
-          </div>
-          <div class="expertise-card reveal">
-            <h3>Middleware &amp; Integration</h3>
-            <p>Built custom middleware for authentication, logging, error handling, and cross-cutting concerns across API layers.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- System Architecture -->
-    <section class="section section-alt" id="architecture">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Design</span>
-          <h2 class="section-title">System Architecture &amp; Design</h2>
-        </div>
-        <div class="architecture-content">
-          <div class="arch-diagram reveal">
-            <div class="arch-layer">
-              <span class="arch-label">Client Layer</span>
-              <div class="arch-items">
-                <span>Web Applications</span>
-                <span>Windows Apps</span>
-                <span>Console Apps</span>
-              </div>
-            </div>
-            <div class="arch-connector"></div>
-            <div class="arch-layer">
-              <span class="arch-label">API Gateway</span>
-              <div class="arch-items">
-                <span>Ocelot API Gateway</span>
-                <span>Middleware Pipeline</span>
-              </div>
-            </div>
-            <div class="arch-connector"></div>
-            <div class="arch-layer">
-              <span class="arch-label">Microservices (.NET Core)</span>
-              <div class="arch-items">
-                <span>Clean Architecture</span>
-                <span>CQRS + MediatR</span>
-                <span>gRPC / REST</span>
-              </div>
-            </div>
-            <div class="arch-connector"></div>
-            <div class="arch-layer">
-              <span class="arch-label">Data &amp; Cloud (Azure)</span>
-              <div class="arch-items">
-                <span>SQL Server + EF Core</span>
-                <span>Azure AD SSO</span>
-                <span>Key Vault</span>
-                <span>App Services</span>
-              </div>
-            </div>
-            <div class="arch-connector"></div>
-            <div class="arch-layer">
-              <span class="arch-label">DevOps</span>
-              <div class="arch-items">
-                <span>Azure DevOps CI/CD</span>
-                <span>Git</span>
-                <span>Release Management</span>
-              </div>
-            </div>
-            <p class="arch-note">Architecture diagram based on verified resume technologies and project descriptions.</p>
-          </div>
-          <div class="arch-principles reveal">
-            <h3>Design Principles Applied</h3>
-            <ul>
-              <li><strong>Microservices Architecture</strong> — Decomposed monolithic systems into independently deployable services</li>
-              <li><strong>Clean Architecture</strong> — Separation of concerns with domain-driven layering</li>
-              <li><strong>CQRS with MediatR</strong> — Command-query separation for scalable read/write operations</li>
-              <li><strong>SOLID Principles</strong> — Maintainable, testable, and extensible codebases</li>
-              <li><strong>Azure-Native Security</strong> — Azure AD SSO, Key Vault, and role-based access control</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AI / Automation - Placeholder -->
-    <section class="section" id="ai">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Innovation</span>
-          <h2 class="section-title">AI / Automation Projects</h2>
-        </div>
-        <div class="placeholder-section reveal">
-          <div class="placeholder-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 0 1 4 4v1h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2V6a4 4 0 0 1 4-4z"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M9 17h6"/></svg>
-          </div>
-          <h3>Section Pending Review</h3>
-          <p>No AI or automation projects were found in the available source files. Add project details, descriptions, and screenshots to populate this section.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Open Source - Placeholder -->
-    <section class="section section-alt" id="opensource">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Community</span>
-          <h2 class="section-title">Open Source Contributions</h2>
-        </div>
-        <div class="placeholder-section reveal">
-          <div class="placeholder-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          </div>
-          <h3>Section Pending Review</h3>
-          <p>No GitHub profile or open source contributions were found in the available source files. Add repository links and contribution details to complete this section.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Achievements - Placeholder -->
-    <section class="section" id="achievements">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Recognition</span>
-          <h2 class="section-title">Achievements &amp; Awards</h2>
-        </div>
-        <div class="placeholder-section reveal">
-          <div class="placeholder-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5l2-1l2 1l-2-5M8.21 13.89L7 23l5-3l5 3l-1.21-9.11M12 2l2.4 4.8L20 8l-4 3.9L17 18l-5-2.6L7 18l1-6.1L4 8l5.6-1.2L12 2z"/></svg>
-          </div>
-          <h3>Section Pending Review</h3>
-          <p>No quantified achievements or awards were listed in the resume. Add measurable outcomes (e.g., performance improvements, scale metrics) to strengthen this section.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section class="section section-alt" id="education">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Academics</span>
-          <h2 class="section-title">Education</h2>
-        </div>
-        <div class="education-grid">
-          <article class="education-card reveal">
-            <div class="education-degree">MCA</div>
-            <h3>Master of Computer Applications</h3>
-            <p class="education-school">Integral University, Lucknow</p>
-            <span class="education-year">2018 – 2020</span>
-          </article>
-          <article class="education-card reveal">
-            <div class="education-degree">BCA</div>
-            <h3>Bachelor of Computer Applications</h3>
-            <p class="education-school">Integral University, Lucknow</p>
-            <span class="education-year">2015 – 2018</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Certifications - Placeholder -->
-    <section class="section" id="certifications">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Credentials</span>
-          <h2 class="section-title">Certifications</h2>
-        </div>
-        <div class="placeholder-section reveal">
-          <div class="placeholder-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          </div>
-          <h3>Section Pending Review</h3>
-          <p>No certifications were listed in the resume or found in source files. Add Azure, .NET, or other certification details and badge images to complete this section.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Resume Download -->
-    <section class="section section-alt" id="resume">
-      <div class="container">
-        <div class="resume-cta reveal">
-          <div class="resume-cta-content">
-            <h2>Download Resume</h2>
-            <p>Get a detailed overview of my experience, skills, and project history in PDF format.</p>
-          </div>
-          <a href="Mohd-Faizan-Azizi-Resume.pdf" class="btn btn-primary btn-large" download>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-            Download PDF Resume
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Get in Touch</span>
-          <h2 class="section-title">Contact Information</h2>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-card reveal">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-            </div>
-            <h3>Email</h3>
-            <a href="mailto:faizyazizi143@gmail.com">faizyazizi143@gmail.com</a>
-          </div>
-          <div class="contact-card reveal">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <h3>Phone</h3>
-            <a href="tel:+919170140561">+91 9170140561</a>
-          </div>
-          <div class="contact-card reveal">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <h3>Location</h3>
-            <p>Noida 62, India</p>
-          </div>
-          <div class="contact-card placeholder-card reveal">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </div>
-            <h3>LinkedIn</h3>
-            <p class="placeholder-text">https://www.linkedin.com/in/mohd-faizan-azizi-9811b1138/</p>
-          </div>
-          <div class="contact-card placeholder-card reveal">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            </div>
-            <h3>GitHub</h3>
-            <p class="placeholder-text">https://github.com/azizisahab2/</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-content">
-      <p>&copy; 2026 Mohd Faizan Azizi. All rights reserved.</p>
-      <p class="footer-role">Senior .NET Developer | .NET Core, Microservices &amp; Azure</p>
-    </div>
-  </footer>
-
-  <script src="main.js"></script>
+  for (let i = 1; i < n; i++){
+    // 1. wipe sweeps DOWN to cover current image, in sync with the title carousel shifting up
+    tl.to(track, { y: -slotH * i, duration:1, ease:'power2.inOut' })
+      .to(wipe, { yPercent:0, duration:1, ease:'power2.inOut' }, '<');
+    // 2. swap which image is active while covered
+    tl.set(visSlots, { opacity:0 })
+      .set(visSlots[i], { opacity:1 });
+    // 3. wipe sweeps UP off-screen, revealing the new image
+    tl.to(wipe, { yPercent:-100, duration:1, ease:'power2.inOut' });
+    if (i < n - 1) tl.to({}, { duration:0.4 }); // brief hold between transitions
+  }
+})();
+</script>
 </body>
 </html>
